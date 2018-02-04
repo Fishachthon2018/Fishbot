@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as fb from './fb';
 import * as fish from './fish';
+import * as config from './config';
 
 const webhookHandler = fb.webhookHandler();
 
@@ -27,7 +28,7 @@ app.post('/fish', (req, res) => {
 
 if(require.main == module) {
     fb.setupProfile();
-    app.listen(8000, () => {
-        console.log('Running on 8000');
+    app.listen(config.webApp.port, () => {
+        console.log(`Running on ${config.webApp.port}`);
     });
 }
