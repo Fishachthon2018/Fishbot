@@ -3,7 +3,7 @@ export function goodFish() {
     On average they grow to $fishLength meters long and weight $fishWeight kg.
     Yum! This fish is recommended for health for the following reasons: 1, 3, 5 
      
-    :: Upload another photo
+    :: Other photo
     :: Tell me more`;
 }
 
