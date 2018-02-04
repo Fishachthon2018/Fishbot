@@ -5,6 +5,7 @@ interface FishInfo {
     recommended: boolean;
     edible: boolean;
     endangered: boolean;
+    commonName: string;
 }
 
 export async function getFish(imageUrl: string) : Promise<FishInfo> {
@@ -25,11 +26,11 @@ export async function getFishByName(name: string) {
 
 let i=0;
 const fishes: FishInfo[] = [
-    {recommended: false, edible: false, endangered: true, name: 'Carangidae', fishLength: '0.5', fishWeight: '2'},
-    {recommended: false, edible: true, endangered: false, name: 'Chanidae', fishLength: '0.5', fishWeight: '2'},
-    {recommended: false, edible: false, endangered: true, name: 'Cichlids', fishLength: '0.5', fishWeight: '2'},
-    {recommended: false, edible: true, endangered: false, name: 'Rachycentridae', fishLength: '0.5', fishWeight: '2'},
-    {recommended: false, edible: false, endangered: true, name: 'Nemipteridae', fishLength: '0.5', fishWeight: '2'},
-    {recommended: false, edible: true, endangered: false, name: 'Stromateidae', fishLength: '0.5', fishWeight: '2'},
-    {recommended: false, edible: false, endangered: true, name: 'Serranidae', fishLength: '0.5', fishWeight: '2'}
+    {commonName: 'common fish', recommended: false, edible: false, endangered: true, name: 'Carangidae', fishLength: '0.5', fishWeight: '2'},
+    {commonName: 'common fish', recommended: false, edible: true, endangered: false, name: 'Chanidae', fishLength: '0.5', fishWeight: '2'},
+    {commonName: 'common fish', recommended: false, edible: false, endangered: true, name: 'Cichlids', fishLength: '0.5', fishWeight: '2'},
+    {commonName: 'common fish', recommended: false, edible: true, endangered: false, name: 'Rachycentridae', fishLength: '0.5', fishWeight: '2'},
+    {commonName: 'common fish', recommended: false, edible: false, endangered: true, name: 'Nemipteridae', fishLength: '0.5', fishWeight: '2'},
+    {commonName: 'common fish', recommended: false, edible: true, endangered: false, name: 'Stromateidae', fishLength: '0.5', fishWeight: '2'},
+    {commonName: 'common fish', recommended: false, edible: false, endangered: true, name: 'Serranidae', fishLength: '0.5', fishWeight: '2'}
 ]

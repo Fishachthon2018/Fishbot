@@ -11,11 +11,19 @@ export function endangeredFish() {
     return `Jackpot!. You caught a $fishName. This is a rare breed and hard to find.
     Not edible and it’s illegal to keep. 
     We suggest you to contact the following organizations below.
-    Might get potential rewards!
+    Might get potential rewards! $contactAgency`
+}
+
+export function contactAgency() {
+    return `Endemic Species Research Institute
+    (049)2761331
     
-    (Endemic Species Research Institute) 
-    (Academia Sinica Biodiversity Research Center) 
-    (NTU Institute of Oceanography)`;
+  Academia Sinica Biodiversity Research Center
+    02-2789-9621
+    
+  NTU Institute of Oceanography
+    886-2-23636040
+  `;
 }
 
 export function waitForIdentification() {

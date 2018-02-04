@@ -69,7 +69,15 @@ type FbButton = {
   type: 'postback',
   title: string,
   payload: string
-} | { type: 'web_url', url: string, title: string};
+} | {
+  type: 'web_url',
+  url: string,
+  title: string
+} | {
+  type: 'phone_number',
+  title: string,
+  payload: string
+};
 
 let VerifyPayload = t.interface({
   'hub.mode': t.string,

@@ -6,6 +6,7 @@ import * as replies from './replies';
 import { getFishByName } from './fish';
 import * as config from './config';
 import { undefined } from 'io-ts';
+import { join } from 'path';
 
 interface Message {
     sessionId: string,
@@ -91,7 +92,7 @@ async function processFish(fishName: string, vars: any) {
 }
 
 async function processSpeech(speech: string, vars: any) : Promise<Reply[]> {
-    let replies : Reply[] = [];
+    let fbReplies : Reply[] = [];
 
     for(let text of speech.split('---')) {
         text = text
@@ -100,11 +101,75 @@ async function processSpeech(speech: string, vars: any) : Promise<Reply[]> {
         
         let quick_replies : any[] = [];
         let images : string[] = [];
+        let extraReplies : Reply[] = [];
 
         text = text.replace(/\$askForLocation/g, () => {
             quick_replies.push({
                 content_type: 'location'
             })
+            return '';
+        });
+
+        text = text.replace(/\$contactAgency/g, () => {
+            extraReplies.push({
+                attachment: {
+                    type: "template" as "template",
+                    payload: {
+                        template_type: "generic" as "generic",
+                        elements: [
+                            {
+                                title: 'Endemic Species Research Institute',
+                                subtitle: '',
+                                buttons: [
+                                    {
+                                        type: 'web_url',
+                                        title: 'Website',
+                                        url: 'https://tesri.tesri.gov.tw'
+                                    },
+                                    {
+                                        type: 'phone_number',
+                                        title: 'Call',
+                                        payload: '(049)2761331'
+                                    }
+                                ]
+                            },
+                            {
+                                title: 'Academia Sinica Biodiversity Research Center',
+                                subtitle: '',
+                                buttons: [
+                                    {
+                                        type: 'web_url',
+                                        title: 'Website',
+                                        url: 'https://www.biodiv.tw'
+                                    },
+                                    {
+                                        type: 'phone_number',
+                                        title: 'Call',
+                                        payload: '02-2789-9621'
+                                    }
+                                ]
+                            },
+                            {
+                                title: 'NTU Institute of Oceanography',
+                                subtitle: '',
+                                buttons: [
+                                    {
+                                        type: 'web_url',
+                                        title: 'Website',
+                                        url: 'http://www.oc.ntu.edu.tw'
+                                    },
+                                    {
+                                        type: 'phone_number',
+                                        title: 'Call',
+                                        payload: '886-2-23636040'
+                                    }
+                                ]
+                            },
+                        ]
+                    }
+                }
+            });
+
             return '';
         });
 
@@ -134,14 +199,14 @@ async function processSpeech(speech: string, vars: any) : Promise<Reply[]> {
             .replace(/\s+$/, '');
         
         if(text) {
-            replies.push({
+            fbReplies.push({
                 text: text,
             });
         }
 
         if(images.length > 0) {
             for(let img of images) {
-                replies.push({
+                fbReplies.push({
                     attachment: {
                         type: 'image',
                         payload: {
@@ -153,13 +218,15 @@ async function processSpeech(speech: string, vars: any) : Promise<Reply[]> {
             }
         }
 
+        fbReplies = [... fbReplies, ... extraReplies];
+
         if(quick_replies.length > 0) {
-            if(replies.length == 0) replies.push({text: ''});
-            replies[replies.length - 1].quick_replies = quick_replies;
+            if(fbReplies.length == 0) fbReplies.push({text: ''});
+            fbReplies[fbReplies.length - 1].quick_replies = quick_replies;
         }
     }
 
-    return replies;
+    return fbReplies;
 }
 
 let imageDataCache : any = {};
