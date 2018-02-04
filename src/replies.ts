@@ -3,8 +3,8 @@ export function goodFish() {
     On average they grow to $fishLength meters long and weight $fishWeight kg.
     Yum! This fish is recommended for health for the following reasons: 1, 3, 5 
      
-    :: I wanna upload another pic of fish!
-    :: Tell me more about the reasons`;
+    :: Upload another photo
+    :: Tell me more`;
 }
 
 export function endangeredFish() {
