@@ -1,0 +1,24 @@
+{
+  "name": "fishbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "prestart": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.11.1",
+    "@types/form-data": "^2.2.1",
+    "@types/node-fetch": "^1.6.7",
+    "express": "^4.16.2",
+    "express-x-hub": "^1.0.4",
+    "form-data": "^2.3.1",
+    "io-ts": "^0.9.7",
+    "node-fetch": "^1.7.3",
+    "typescript": "^2.7.1"
+  }
+}
